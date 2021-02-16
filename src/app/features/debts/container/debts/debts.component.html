@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-5 col-lg-4">
+      <div class="text-center">
+        <h3>Clientes Devedores</h3>
+      </div>
+      <div
+        *ngIf="costumers$ | async as costumers; else loadingCustomers"
+        class="debts"
+      >
+        <cd7-customers-card
+          *ngIf="costumers.length > 0"
+          [costumers]="costumers"
+          (selectedCustomer)="selectCustomer($event)"
+          (deleteDebts)="deleteDebtsFromCustomers($event)"
+        ></cd7-customers-card>
+        <ng-container *ngIf="costumers.length === 0">
+          <h5>Nenhum cliente endividado por aqui</h5>
+        </ng-container>
+      </div>
+      <ng-template #loadingCustomers>
+        <ngx-skeleton-loader
+          [count]="5"
+          [theme]="{
+            height: '50px'
+          }"
+        ></ngx-skeleton-loader>
+      </ng-template>
+    </div>
+    <div class="col-md-7 col-lg-8">
+      <div class="w-100" style="border: solid 1px black; height: 75px"></div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="custom-button">
+    <a href="#">NOVO</a>
+  </div>
+</div>

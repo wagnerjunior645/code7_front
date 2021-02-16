@@ -1,0 +1,22 @@
+// .footer {
+//     position: fixed;
+//     bottom: 15;
+//     background-color: red;
+// }
+
+.custom-button {
+  color: #fff;
+  border: solid 1px black;
+  padding: 10px 25px;
+  display: inline-block;
+  font-size: 1rem;
+  a {
+    outline: none;
+    text-decoration: none;
+    color: black;
+    // &:hover {
+    //   outline: none;
+    //   text-decoration: none;
+    // }
+  }
+}

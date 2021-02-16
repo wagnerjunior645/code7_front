@@ -1,0 +1,29 @@
+$background-color-card: #151a4e;
+$background-color-card-active: #0d113d;
+
+.debts-card {
+  position: relative;
+  background-color: $background-color-card;
+  color: #fff;
+
+  padding: 17px 10px;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  &:active {
+    background-color: $background-color-card-active;
+  }
+  .debts-card__close {
+    position: absolute;
+    right: 7px;
+    top: -3px;
+    z-index: 99;
+    &:hover {
+      color: #ececec;
+    }
+  };
+  .debts-card__info {
+    font-weight: 400;
+    display: flex;
+    justify-content: space-around;
+  }
+}
