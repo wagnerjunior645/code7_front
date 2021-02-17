@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CustomerModel } from 'src/app/shared/models/customer.model';
+import { DebtModel } from 'src/app/shared/models/debt.model';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -18,8 +19,8 @@ export class CustomersService {
     return this.http.get(`${environment.apiUrl}/customers/${customersId}`);
   }
 
-  getDebtsByCustomers(customersId: number): Observable<any> {
-    return this.http.get(
+  getDebtsByCustomers(customersId: number): Observable<DebtModel[]> {
+    return this.http.get<DebtModel[]>(
       `${environment.apiUrl}/customers/${customersId}/debts`
     );
   }
@@ -31,6 +32,8 @@ export class CustomersService {
   }
 
   deleteDebtsFromCustomers(customersId: number): Observable<void> {
-    return this.http.delete<void>(`${environment.apiUrl}/customers/${customersId}/debts`);
+    return this.http.delete<void>(
+      `${environment.apiUrl}/customers/${customersId}/debts`
+    );
   }
 }

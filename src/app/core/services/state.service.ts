@@ -5,6 +5,7 @@ import { CustomerModel } from 'src/app/shared/models/customer.model';
 @Injectable()
 export class StateService {
   private customers: CustomerModel[] = [];
+  // tslint:disable-next-line: variable-name
   private readonly _customersDebts = new BehaviorSubject<CustomerModel[]>([]);
   constructor() {}
 
@@ -13,6 +14,6 @@ export class StateService {
   }
 
   setCustomersDebts(customers: CustomerModel[]): void {
-    this._customersDebts.next();
+    this._customersDebts.next(customers);
   }
 }

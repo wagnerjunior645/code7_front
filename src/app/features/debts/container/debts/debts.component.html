@@ -1,8 +1,8 @@
-<div class="container">
+<div class="container mt-4">
   <div class="row">
     <div class="col-md-5 col-lg-4">
       <div class="text-center">
-        <h3>Clientes Devedores</h3>
+        <h1>Clientes Devedores</h1>
       </div>
       <div
         *ngIf="costumers$ | async as costumers; else loadingCustomers"
@@ -15,7 +15,9 @@
           (deleteDebts)="deleteDebtsFromCustomers($event)"
         ></cd7-customers-card>
         <ng-container *ngIf="costumers.length === 0">
-          <h5>Nenhum cliente endividado por aqui</h5>
+          <div class="text-center">
+            <h3>Nenhum cliente endividado por aqui</h3>
+          </div>
         </ng-container>
       </div>
       <ng-template #loadingCustomers>
@@ -27,14 +29,42 @@
         ></ngx-skeleton-loader>
       </ng-template>
     </div>
-    <div class="col-md-7 col-lg-8">
-      <div class="w-100" style="border: solid 1px black; height: 75px"></div>
+    <div class="col-md-7 col-lg-8 custom">
+      <ng-container *ngIf="isSelectedCustomer && !isLoadingCustomers">
+        <h2>Todas as Dívidas de #{{ selectedCustomers.name }}</h2>
+        <ng-container *ngFor="let debt of debts">
+          <cd7-debts-from-customers
+            [debt]="debt"
+            (selectedDebt)="selectDebt($event)"
+          ></cd7-debts-from-customers>
+        </ng-container>
+      </ng-container>
+
+      <ng-container *ngIf="isSelectedCustomer && isLoadingCustomers">
+        <ngx-skeleton-loader
+          [count]="5"
+          [theme]="{
+            height: '50px'
+          }"
+        ></ngx-skeleton-loader>
+      </ng-container>
+
+      <ng-container *ngIf="showForm">
+        <cd7-debts-form
+          [customers]="sourceCustomers"
+          [debt]="selectedDebt"
+          (emitterUpdate)="emitterUpdate($event)"
+          (emitterCreate)="emitterCreate($event)"
+          (emitterRemove)="emitterRemove($event)"
+        >
+        </cd7-debts-form>
+      </ng-container>
     </div>
   </div>
 </div>
 
 <div class="footer">
-  <div class="custom-button">
+  <div (click)="newDebt()" class="custom-button">
     <a href="#">NOVO</a>
   </div>
 </div>

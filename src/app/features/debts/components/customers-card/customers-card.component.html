@@ -1,8 +1,8 @@
 <div class="debts-card" *ngFor="let customer of costumers" >
-    <div class="debts-card__close" (click)="deleteDebtsFromCustomer(customer.id)">
+    <div class="debts-card__close" (click)="deleteDebtsFromCustomer(customer.id)" title="Remover todas as dívidas do cliente">
         x
     </div>
-    <div class="debts-card__info" (click)="selecCustomer(customer.id)">
+    <div class="debts-card__info" (click)="selecCustomer(customer)">
         <span>{{ customer.name }}</span>
         <span>{{ customer.totalDebts | currency: "BRL" }}</span>
     </div>

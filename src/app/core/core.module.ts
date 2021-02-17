@@ -6,7 +6,6 @@ import { ToastrModule } from 'ngx-toastr';
 @NgModule({
   declarations: [],
   imports: [
-    ReactiveFormsModule,
     HttpClientModule,
     ToastrModule.forRoot({
       timeOut: 6000,

@@ -10,13 +10,24 @@
   padding: 10px 25px;
   display: inline-block;
   font-size: 1rem;
+  cursor: pointer;
   a {
     outline: none;
     text-decoration: none;
     color: black;
-    // &:hover {
-    //   outline: none;
-    //   text-decoration: none;
-    // }
   }
+  &:hover {
+    background-color: #b8b8b8;
+  }
+}
+
+.footer {
+  margin-top: 50px;;
+  float: right;
+  margin-right: 25px;
+}
+
+.custom {
+  border: solid 2px #bdbdbd;
+  padding: 15px;
 }

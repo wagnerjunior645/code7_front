@@ -1,0 +1,5 @@
+<div class="debt" (click)="selectDebt()">
+  <p>{{ debt.debtsDate | date: 'dd/MM/YYYY' }}</p>
+  <p>{{ debt.description }}</p>
+  <p>{{ debt.value | currency: "BRL" }}</p>
+</div>

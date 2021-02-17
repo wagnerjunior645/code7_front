@@ -1,1 +1,67 @@
-<p>debts-form works!</p>
+<form [formGroup]="debtsForm">
+  <div class="row">
+    <div class="col-md-9">
+      <mat-form-field>
+        <mat-label>Cliente</mat-label>
+        <mat-select formControlName="customersId" required>
+          <mat-option *ngFor="let customer of customers" [value]="customer.id">
+            {{ customer.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9">
+      <mat-form-field>
+        <mat-label>Motivo da Dívida</mat-label>
+        <textarea
+          #motivo
+          matInput
+          placeholder="Motivo da dívida do cliente"
+          formControlName="description"
+        ></textarea>
+        <mat-hint [align]="'end'">{{ motivo.value.length }} / 255</mat-hint>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9">
+      <mat-form-field>
+        <mat-label>Valor da Dívida</mat-label>
+        <input
+          required
+          formControlName="value"
+          matInput
+          placeholder="Digite o valor da dívida"
+          currencyMask
+          [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
+        />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9">
+      <mat-form-field>
+        <mat-label>Escolha a data</mat-label>
+        <input formControlName="debtsDate" matInput [matDatepicker]="picker" required/>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+  </div>
+</form>
+
+<div class="button-container">
+    <button (click)="remove()" *ngIf="debt" mat-flat-button color="warn">Excluir</button>
+    <button (click)="update()" *ngIf="debt" mat-flat-button color="primary">Salvar</button>
+    <button (click)="create()" *ngIf="!debt" mat-flat-button color="primary">Criar</button>
+</div>
+
+
+
+{{ debtsForm.value | json }}
+{{ debtsForm.valid }}

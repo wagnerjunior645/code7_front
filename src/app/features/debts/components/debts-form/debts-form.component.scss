@@ -1,0 +1,21 @@
+$smallView: 600px;
+
+form {
+  padding-left: 50px;
+  padding-right: 50px;
+  @media screen and (max-width: $smallView) {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+}
+
+.button-container {
+    float: right;
+    button {
+        + {
+            button {
+                margin-left: 15px;
+            }
+        }
+    }
+}
